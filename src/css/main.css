@@ -1,0 +1,31 @@
+@tailwind base;
+
+@tailwind components;
+
+body {
+	/* overscroll-behavior-y: none; */
+}
+.top-2 {top:0.5rem}
+.rounded-xl { border-radius: 0.625rem;}
+.bg-gray-50 { 
+	--bg-opacity: 1;
+	background-color: #FAFCFD;
+	background-color: rgb(250, 252, 253, var(--bg-opacity));
+}
+.bg-blur {
+	-webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+.-z-1 { z-index: -1; }
+.grid-stack > * {
+	grid-area: 1/1;
+	margin: auto;
+}
+.font-overlock {
+	font-family: 'Overlock', sans-serif;
+}
+.bg-waves {
+	background-image: linear-gradient(#f7fafc20, #f7fafc66 70%,#f7fafcff), url("../waves.svg");
+	/* background-image: linear-gradient(#f7fafc20, #f7fafc66 70%,#f7fafcff), url("../waves.svg"); */
+}
+@tailwind utilities;
