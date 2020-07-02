@@ -13,8 +13,8 @@ function isActive({ location, href, isPartiallyCurrent, isCurrent }) {
 }
 </script>
 
-<div class="bg-gray-50 border-t border-gray-300 shadow-2xl w-screen fixed bottom-0">
-    <nav class="flex justify-around text-xs text-gray-800 leading-relaxed text-center pb-safe-area">
+<div class="fixed bottom-0 w-screen bg-gray-50 border-t border-gray-300 text-gray-800 shadow-2xl text-xs">
+    <nav class="flex justify-around leading-relaxed text-center pb-safe-area sm:max-w-md mx-auto">
         <Link getProps="{isActive}" to="/">
             <svg height="26" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 25"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
             <span class="opacity-75">Home</span>
@@ -29,12 +29,3 @@ function isActive({ location, href, isPartiallyCurrent, isCurrent }) {
         </Link>
     </nav>
 </div>
-
-<style>
-.pb-safe-area {
-	padding-bottom: env(safe-area-inset-bottom, 0);
-}
-/* .active\:teal {
-	-webkit-tap-highlight-color: #B2F5EA;
-} */
-</style>

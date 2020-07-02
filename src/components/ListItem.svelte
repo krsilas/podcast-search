@@ -14,14 +14,3 @@ function handleClick(){
         <p class="text-sm text-gray-600 clamp" style="--lines: 1">{item.artistName}</p>
     </div>
 </div>
-
-<style>
-
-.clamp {
-    --lines: 2;
-    display: -webkit-box;
-    -webkit-line-clamp: var(--lines);
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-</style>
