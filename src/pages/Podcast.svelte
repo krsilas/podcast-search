@@ -4,7 +4,7 @@ import {parsePodcast} from '../parse'
 export let id = ""
 let info = getInfo()
 let feed = getFeed()
-let NumberOfEpisodes = null
+let NumberOfEpisodes = 0
 
 async function getInfo() {
     return fetch (`/proxy/https://itunes.apple.com/lookup?id=${id}&entity=podcast`)

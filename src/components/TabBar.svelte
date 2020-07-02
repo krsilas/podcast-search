@@ -4,12 +4,12 @@ import { getContext } from "svelte"
 
 const location = getContext({})
 function isActive({ location, href, isPartiallyCurrent, isCurrent }) {
-		const defaultStyles = "flex flex-col flex-1 py-1 pt-2 active:teal"
-		const isActive = href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
-		if (isActive) {
-			return { class: `${defaultStyles} text-teal-700` };
-		}
-		return { class: defaultStyles };
+    const defaultStyles = "flex flex-col flex-1 py-1 pt-2 active:teal"
+    const isActive = href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
+    if (isActive) {
+        return { class: `${defaultStyles} text-teal-700` };
+    }
+    return { class: defaultStyles };
 }
 </script>
 
