@@ -1,6 +1,6 @@
 
 module.exports = {
-  purge: process.env.NODE_ENV === 'production' ? ['./src/**/*.html', './src/**/*.svelte'] : [],
+  purge: process.env.NODE_ENV === 'production' ? ['./src/**/*.html', './src/**/*.svelte'] : false,
   theme: {
     extend: {
       height: {
@@ -8,6 +8,13 @@ module.exports = {
       }
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ['responsive', 'hover', 'focus', 'active'],
+      borderColor: ['responsive', 'hover', 'focus', 'focus-within'],
+      outline: ['active'],
+      textOpacity: ['active']
+    }
+  },
   plugins: [],
 }

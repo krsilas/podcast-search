@@ -25,7 +25,10 @@ body {
 	font-family: 'Overlock', sans-serif;
 }
 .bg-waves {
-	background-image: linear-gradient(#f7fafc20, #f7fafc66 70%,#f7fafcff), url("../waves.svg");
+	background-image: linear-gradient(#f7fafc20, #f8fbfd66 70%,#ffffff), url("../waves.svg");
 	/* background-image: linear-gradient(#f7fafc20, #f7fafc66 70%,#f7fafcff), url("../waves.svg"); */
+}
+.desaturate-75 {
+	filter: saturate(0.75);
 }
 @tailwind utilities;
