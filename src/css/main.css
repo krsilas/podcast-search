@@ -36,4 +36,7 @@ body {
 .pb-safe-area {
 	padding-bottom: env(safe-area-inset-bottom, 0);
 }
+button[class*="active:"] {
+	-webkit-tap-highlight-color: transparent;
+}
 @tailwind utilities;
