@@ -13,6 +13,7 @@
     function autofocus(el){
         const params = new URLSearchParams(window.location.search)
         params.get('ref') == 'index' && el.focus()
+        window.history.replaceState({}, document.title, window.location.pathname)
     } 
 </script>
 
