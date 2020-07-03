@@ -21,12 +21,9 @@ app.get('/proxy*', function(req, res) {
     cors_proxy.emit('request', req, res);
 });
 
-app.get(["/", "/search", "/favorites"], (req,res)=>{
+app.get(["/", "/search", "/favorites", "/podcast/:id"], (req,res)=>{
     res.sendFile(path.join(__dirname+'/public/index.html'));
 })
 
-app.get(["/podcast/:id"], (req,res)=>{
-    res.send(req.params.id)
-})
 
 app.listen(PORT, ()=>console.log(`Running on port ${PORT}`))

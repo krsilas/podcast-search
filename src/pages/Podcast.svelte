@@ -1,6 +1,7 @@
 <script>
 import { openDB } from 'idb'
 import FavButton from '../components/FavButton'
+import ShareButton from '../components/ShareButton'
 import {parsePodcast} from '../parse'
 export let id = ""
 let NumberOfEpisodes = 0
@@ -16,7 +17,7 @@ async function getInfo() {
 
 async function getFeed(){
     const {feedUrl} = await info
-    return fetch(feedUrl)
+    return fetch(`/proxy/${feedUrl}`)
         .then(res=>res.text())
         .then(parsePodcast)
         .then(res=>{
@@ -65,7 +66,10 @@ async function saveToFavorites(){
             Kategorie: {podcast.primaryGenreName}
         </p>
     </div>
-    <FavButton on:save={saveToFavorites} {isFav} />
+		<div class="flex flex-wrap space-x-2">
+			<FavButton on:save={saveToFavorites} {isFav} />
+			<ShareButton name={podcast.name} />
+		</div>
 {:catch error}
     <p class="text-red-500">{error.message}</p>
 {/await}

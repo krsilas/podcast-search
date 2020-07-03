@@ -16,7 +16,7 @@ export const [send, receive] = crossfade({
         const transform = style.transform === 'none' ? '' : style.transform;
 
         return {
-            duration: 6000,
+            duration: 200,
             easing: quintOut,
             css: t => `
                 transform: ${transform};

@@ -15,6 +15,7 @@
 	function openModal(e) {
 		modalOpen = true
 		podcastId = e.detail.id
+		history.pushState({}, document.title, `/podcast/${e.detail.id}`)
 	}
 	
 </script>
@@ -25,7 +26,9 @@
     <Route path="/"><Home on:detail={e => openModal(e)} /></Route>
 	<Route path="/search"><Search on:detail={e => openModal(e)} /></Route>
 	<Route path="/favorites"><Favorites on:detail={e => openModal(e)} /></Route>
-	<Route path="/podcast/:id"><Podcast /></Route>
+	<Route path="/podcast/:id" let:params>
+		<div class="m-4"><Podcast id={params.id} /></div>
+	</Route>
 	<TabBar />
   </div>
   {#if modalOpen}

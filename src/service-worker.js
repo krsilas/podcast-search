@@ -5,6 +5,7 @@ openDB("db1", 1, {
 		db.createObjectStore("favorites");
 	}
 });
+const manifest = self.__WB_MANIFEST;
 // import {registerRoute} from 'workbox-routing';
 // import {CacheFirst, StaleWhileRevalidate} from 'workbox-strategies';
 
