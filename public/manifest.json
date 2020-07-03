@@ -1,8 +1,8 @@
 {
     "name": "Podcast Search",
     "short_name": "Podcasts",
-    "theme_color": "#c53030",
-    "background_color": "#fafcfd",
+    "theme_color": "#ECF5EE",
+    "background_color": "#ffffff",
     "display": "standalone",
     "orientation": "portrait",
     "scope": "/",
