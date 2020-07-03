@@ -5,7 +5,6 @@ const dispatch = createEventDispatcher()
 export let isFav = false
 function handleClick(){
     dispatch('save')
-    isFav = !isFav
 }
 </script>
 

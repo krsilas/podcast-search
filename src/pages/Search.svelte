@@ -1,15 +1,14 @@
 <script>
 import SearchBar from '../components/SearchBar'
 import ListItem from '../components/ListItem'
-import {fly} from 'svelte/transition'
-const params = new URLSearchParams(window.location.search.substring(1)) 
+const params = new URLSearchParams(window.location.search)
 const term = params.get("q") 
 let searchResults = term ? search(term) : new Promise((resolve,reject)=>{reject({message: 'Gebe einen Suchbegriff ein'})})
 
 async function search(term) {
-		return fetch(`https://itunes.apple.com/search?media=podcast&term=${term}`)
-				.then(res => res.json())
-				.catch(err => { console.error(err) })
+	return fetch(`https://itunes.apple.com/search?media=podcast&term=${term}`)
+			.then(res => res.json())
+			.catch(err => { console.error(err) })
 }
 
 function handleSearch(event) {
@@ -30,7 +29,7 @@ function handleSearch(event) {
 					<ListItem on:detail {item} />
 			{/each}
 	{:catch error}
-		<p class="hidden">{error.message}</p>
+		<p>{error.message}</p>
 	{/await}
 	</section>
 </main>

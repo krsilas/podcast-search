@@ -5,15 +5,16 @@
 	import Search from "./pages/Search"
 	import Modal from './components/Modal'
 	import Podcast from './pages/Podcast'
+	import Favorites from './pages/Favorites'
 	import TabBar from './components/TabBar'
 	
 	let modalOpen = false
 	let podcastId = ""
 	//export let url = ""
-	//registerServiceWorker()
-	function openModal(id) {
+	registerServiceWorker()
+	function openModal(e) {
 		modalOpen = true
-		podcastId = id
+		podcastId = e.detail.id
 	}
 	
 </script>
@@ -21,8 +22,9 @@
 
 <Router> 
   <div class="min-h-screen pb-16 select-none">
-    <Route path="/"><Home on:detail={e => openModal(e.detail.id)} /></Route>
-	<Route path="/search"><Search on:detail={e => openModal(e.detail.id)} /></Route>
+    <Route path="/"><Home on:detail={e => openModal(e)} /></Route>
+	<Route path="/search"><Search on:detail={e => openModal(e)} /></Route>
+	<Route path="/favorites"><Favorites on:detail={e => openModal(e)} /></Route>
 	<Route path="/podcast/:id"><Podcast /></Route>
 	<TabBar />
   </div>

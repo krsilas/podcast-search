@@ -1,10 +1,11 @@
 <script>
+import { openDB } from 'idb'
 import FavButton from '../components/FavButton'
 import {parsePodcast} from '../parse'
 export let id = ""
-let info = getInfo()
-let feed = getFeed()
 let NumberOfEpisodes = 0
+let isFav = false
+let info = getInfo()
 
 async function getInfo() {
     return fetch (`/proxy/https://itunes.apple.com/lookup?id=${id}&entity=podcast`)
@@ -14,7 +15,7 @@ async function getInfo() {
 }
 
 async function getFeed(){
-    const {feedUrl} = await getInfo();
+    const {feedUrl} = await info
     return fetch(feedUrl)
         .then(res=>res.text())
         .then(parsePodcast)
@@ -24,30 +25,52 @@ async function getFeed(){
         })
         .catch(err=>{console.errror(err)})
 }
-function saveToFavorites(){
 
+(async () => {
+	const db1 = await openDB('db1', 1);
+	const { trackId } = await info
+	db1.getAllKeys('favorites').then(res => { isFav = res.includes(trackId)})
+})()
+
+async function saveToFavorites(){
+	const podcast = await info
+	const db1 = await openDB('db1', 1);
+
+	if (!isFav){
+		db1.add(
+			'favorites', //Name der Datenbank
+			podcast, //Value
+			podcast.trackId //Key
+		).then(result => {
+			console.log(`Podcast mit der ID ${podcast.trackId} hinzugefügt!`)
+		}).catch(err => { console.error('Error: ', err) })
+	} else {
+		db1.delete('favorites', podcast.trackId).catch(err => { console.error('Errord: ', err) })
+	} 
+	db1.close()
+	isFav = !isFav
 }
 </script>
 
 
 {#await info}
 <p class="hidden">Lädt...</p>
-{:then info}
-    <img class="h-48 rounded-xl shadow" src={info.artworkUrl600} alt="{info.name}">
+{:then podcast}
+    <img class="h-48 rounded-xl shadow" src={podcast.artworkUrl600} alt="{podcast.name}">
     <div class="my-3">
-        <h2 class="font-medium text-xl">{info.name || info.trackName}</h2>
-        <p class="text-gray-600">{info.artistName}</p>
+        <h2 class="font-medium text-xl">{podcast.name || podcast.trackName}</h2>
+        <p class="text-gray-600">{podcast.artistName}</p>
         <p class="my-2">
             Folgenanzahl: {NumberOfEpisodes} <br>
-            Kategorie: {info.primaryGenreName}
+            Kategorie: {podcast.primaryGenreName}
         </p>
     </div>
-    <FavButton on:save={saveToFavorites} isFav={false} />
+    <FavButton on:save={saveToFavorites} {isFav} />
 {:catch error}
     <p class="text-red-500">{error.message}</p>
 {/await}
 
-{#await feed}
+{#await getFeed()}
     Lädt
 {:then data}
     {#each data.episodes.slice(0,25) as episode, index}

@@ -73,7 +73,7 @@ module.exports = {
 		historyApiFallback: true,
 		proxy: {
 			'/proxy': {
-				target: 'https://rss.itunes.apple.com/',
+				target: 'https://cors-anywhere.herokuapp.com/',
 				pathRewrite: {'^/proxy': ''},
 				changeOrigin: true,
 			}
