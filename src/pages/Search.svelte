@@ -6,7 +6,7 @@ const term = params.get("q")
 let searchResults = term ? search(term) : new Promise((resolve,reject)=>{reject({message: 'Gebe einen Suchbegriff ein'})})
 
 async function search(term) {
-	return fetch(`https://itunes.apple.com/search?media=podcast&term=${term}`)
+	return fetch(`/proxy/https://itunes.apple.com/search?media=podcast&term=${term}`)
 			.then(res => res.json())
 			.catch(err => { console.error(err) })
 }

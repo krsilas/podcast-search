@@ -21,7 +21,7 @@ let TopPodcasts = PodcastAPI()
 <section class="max-w-md mx-4 mt-8 text-gray-900 md:mx-auto">
 <h2 class="text-2xl font-extrabold font-overlock">Beliebte Podcasts</h2>
 {#await TopPodcasts}
-	<p>lädt...</p>
+	<p>Charts werden geladen...</p>
 {:then res}
     <div class="divide-y divide-gray-200">
 	    {#each res.feed.results as item}

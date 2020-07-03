@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const { InjectManifest } = require('workbox-webpack-plugin')
 const WorkboxConfig = require('./workbox.config.js')
 
 const mode = process.env.NODE_ENV || 'development';
@@ -73,8 +73,8 @@ module.exports = {
 		historyApiFallback: true,
 		proxy: {
 			'/proxy': {
-				target: 'https://cors-anywhere.herokuapp.com/',
-				pathRewrite: {'^/proxy': ''},
+				target: 'http://localhost:3000/',
+				pathRewrite: {'^/proxy': '/proxy'},
 				changeOrigin: true,
 			}
 		},
@@ -88,11 +88,11 @@ module.exports = {
 			filename: '[name].css',
 			chunkFilename: '[id].css'
 		}),
-		new WorkboxWebpackPlugin.InjectManifest({
-			swSrc: "./src/service-worker.js",
+		new InjectManifest({
+			swSrc: "./src/src-sw.js",
 			swDest: "service-worker.js",
 		
-		  })
+		})
 	],
 	devtool: prod ? false: 'source-map'
 };

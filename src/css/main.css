@@ -39,4 +39,5 @@ body {
 button[class*="active:"] {
 	-webkit-tap-highlight-color: transparent;
 }
+button[disabled]{display: none;}
 @tailwind utilities;

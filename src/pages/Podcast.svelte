@@ -55,7 +55,7 @@ async function saveToFavorites(){
 
 
 {#await info}
-<p class="hidden">Lädt...</p>
+	<p class="hidden">Informationen werden geladen...</p>
 {:then podcast}
     <img class="h-48 rounded-xl shadow" src={podcast.artworkUrl600} alt="{podcast.name}">
     <div class="my-3">
@@ -75,7 +75,7 @@ async function saveToFavorites(){
 {/await}
 
 {#await getFeed()}
-    Lädt
+    <p>Feed wird geladen...</p>
 {:then data}
     {#each data.episodes.slice(0,25) as episode, index}
     <ul class="mt-4">
