@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "autoprefixer": "^9.7.6",
+    "copy-webpack-plugin": "^6.0.3",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "fetch-jsonp": "^1.1.3",

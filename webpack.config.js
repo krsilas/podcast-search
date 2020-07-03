@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin')
-const WorkboxConfig = require('./workbox.config.js')
+const path = require('path')
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
@@ -59,7 +59,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+				test: /\.(png|jpe?g|gif|svg|html)(\?.*)?$/,
 				loader: 'file-loader',
 				options: {
 					esModule: false,
@@ -84,6 +84,9 @@ module.exports = {
 		}
 	},
 	plugins: [
+		new CopyPlugin({
+			patterns: [{from: './src/index.html', to: 'index.html'}]
+		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 			chunkFilename: '[id].css'
