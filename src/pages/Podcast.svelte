@@ -1,5 +1,6 @@
 <script>
 import { openDB } from 'idb'
+import { onMount } from 'svelte'
 import FavButton from '../components/FavButton'
 import ShareButton from '../components/ShareButton'
 import {parsePodcast} from '../parse'
