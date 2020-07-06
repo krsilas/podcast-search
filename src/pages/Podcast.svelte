@@ -27,15 +27,16 @@ async function getFeed(){
         .catch(err=>{console.errror(err)})
 }
 
-(async () => {
+onMount(async () => {
+	// Überprüft, ob die ID des Podcast in der Datenbank vorhanden ist:
 	const db1 = await openDB('db1', 1);
 	const { trackId } = await info
 	db1.getAllKeys('favorites').then(res => { isFav = res.includes(trackId)})
-})()
+})
 
 async function saveToFavorites(){
 	const podcast = await info
-	const db1 = await openDB('db1', 1);
+	const db1 = await openDB('db1', 1)
 
 	if (!isFav){
 		db1.add(
@@ -57,7 +58,7 @@ async function saveToFavorites(){
 {#await info}
 	<p class="hidden">Informationen werden geladen...</p>
 {:then podcast}
-    <img class="h-48 rounded-xl shadow" src={podcast.artworkUrl600} alt="{podcast.name}">
+    <img alt="{podcast.name}" class="h-48 rounded-xl shadow" src={`https://cdn.statically.io/img/${podcast.artworkUrl600.replace('https://', '')}?w=400&h=400&quality=90&f=auto`}>
     <div class="my-3">
         <h2 class="font-medium text-xl">{podcast.name || podcast.trackName}</h2>
         <p class="text-gray-600">{podcast.artistName}</p>

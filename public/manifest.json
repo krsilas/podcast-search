@@ -6,5 +6,18 @@
     "display": "standalone",
     "orientation": "portrait",
     "scope": "/",
-    "start_url": "/"
-  }
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "masked-icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "maskable-icon.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ]
+}

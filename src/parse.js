@@ -1,3 +1,4 @@
+// Modified parser from 'podcastjs' (https://github.com/justinvos/podcastjs)
 import xmlJs from 'xml-js'
 
 export function parsePodcast (text) {
@@ -6,7 +7,6 @@ export function parsePodcast (text) {
 
   const podcast = {
     title: parsePodcastTitle(channel),
-    //date: getPodcastDate(channel),
     description: parsePodcastDescription(channel),
     episodes: podcastRss.rss.channel.item.map(parseEpisode)
   }
@@ -24,14 +24,6 @@ export function parsePodcastTitle (channel) {
   } else {
     throw new Error('Could not parse Podcast.title')
   }
-}
-
-export function getPodcastDate (channel) {
-//   try {
-//     return moment.utc(parsePodcastDate(channel)).format()
-//   } catch (error) {
-//     return moment.utc().format()
-//   }
 }
 
 export function parsePodcastDate (channel) {
