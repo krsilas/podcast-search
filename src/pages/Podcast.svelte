@@ -30,14 +30,14 @@ async function getFeed(){
 
 onMount(async () => {
 	// Überprüft, ob die ID des Podcast in der Datenbank vorhanden ist:
-	const db1 = await openDB('db1', 1);
+	const db1 = await openDB('db1', 2);
 	const { trackId } = await info
 	db1.getAllKeys('favorites').then(res => { isFav = res.includes(trackId)})
 })
 
 async function saveToFavorites(){
 	const podcast = await info
-	const db1 = await openDB('db1', 1)
+	const db1 = await openDB('db1', 2)
 
 	if (!isFav){
 		db1.add(

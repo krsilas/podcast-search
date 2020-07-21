@@ -81,7 +81,7 @@ const fallback = createHandlerBoundToURL('/index.html')
 registerRoute(new NavigationRoute(fallback))
 
 // Erstelle Datenbank und Object Store 'favorites'
-openDB("db1", 1, {
+openDB("db1", 2, {
   upgrade(db) {
 		db.createObjectStore("favorites");
 	}

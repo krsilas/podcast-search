@@ -3,7 +3,11 @@ import { openDB } from 'idb'
 import ListItem from '../components/ListItem'
 
 async function getFavorites(){
-    const db1 = await openDB('db1', 1);
+    const db1 = await openDB('db1', 2, {
+		upgrade(db) {
+			db.createObjectStore("favorites");
+		}
+	});
 	return db1.getAll('favorites')
 }
     
